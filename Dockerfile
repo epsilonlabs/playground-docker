@@ -13,16 +13,22 @@ RUN     apt-get install -y git
 # Clone the Epsilon Playground repo
 RUN git clone --depth=1 https://github.com/epsilonlabs/playground
 
-# WORKDIR /playground
-# RUN mvn install
-
 # Clone the Epsilon website repo
 RUN git clone --depth=1 https://git.eclipse.org/r/www.eclipse.org/epsilon.git
 
-# Copy html
-# ADD static/ /src
-WORKDIR /epsilon
+# Copy start script and make it executable
+ADD start.sh .
+RUN chmod +x start.sh
 
-# Run http server on port 8080
-EXPOSE  8080
-CMD ["python3", "-m", "http.server", "8080"]
+# Copy backend.json
+ADD backend.json /epsilon/live
+
+WORKDIR /playground
+ADD pom.xml .
+RUN mvn install
+
+# WORKDIR ../epsilon
+
+# Run http server on port 8000
+EXPOSE  8000
+CMD ../start.sh
