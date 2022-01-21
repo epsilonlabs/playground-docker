@@ -21,14 +21,16 @@ ADD start.sh .
 RUN chmod +x start.sh
 
 # Copy backend.json
-ADD backend.json /epsilon/live
+ADD backend.json /epsilon/mkdocs/docs/live
 
 WORKDIR /playground
-ADD pom.xml .
-RUN mvn install
+RUN mvn dependency:go-offline
 
-# WORKDIR ../epsilon
-
-# Run http server on port 8000
+# Run http server on port 8000 and services in ports 8001-8003
 EXPOSE  8000
+EXPOSE  8001
+EXPOSE  8002
+EXPOSE  8003
+
+# ENTRYPOINT ["/start.sh"]
 CMD ../start.sh
