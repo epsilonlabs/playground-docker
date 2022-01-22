@@ -19,21 +19,14 @@ RUN apt-get update \
 COPY --from=git_clones /playground/ /playground/
 COPY --from=git_clones /epsilon/ /epsilon/
 
+WORKDIR /playground
+RUN mvn dependency:go-offline
+
 # Copy start script and make it executable
-ADD start.sh .
-RUN chmod +x start.sh
+ADD start.sh /
+RUN chmod +x /start.sh
 
 # Copy backend.json
 ADD backend.json /epsilon/mkdocs/docs/live
 
-WORKDIR /playground
-RUN mvn dependency:go-offline
-
-# Run http server on port 8000 and services in ports 8001-8003
-EXPOSE  8000
-EXPOSE  8001
-EXPOSE  8002
-EXPOSE  8003
-
-# ENTRYPOINT ["/start.sh"]
-CMD ../start.sh
+ENTRYPOINT ["/start.sh"]
