@@ -20,7 +20,12 @@ COPY --from=git_clones /playground/ /playground/
 COPY --from=git_clones /epsilon/ /epsilon/
 
 WORKDIR /playground
-RUN mvn dependency:go-offline
+
+# Due to https://issues.apache.org/jira/browse/MDEP-568, m-dependency-p
+# is not a practical solution for ensuring all dependencies are available.
+#
+# We use https://github.com/qaware/go-offline-maven-plugin instead.
+RUN mvn -B de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies
 
 # Copy start script and make it executable
 ADD start.sh /
