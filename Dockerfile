@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # Install Python
 RUN apt-get update \
-    && apt-get install -y python3 \
+    && apt-get install -y python3-minimal \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=git_clones /playground/ /playground/
