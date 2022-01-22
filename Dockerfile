@@ -1,14 +1,12 @@
 FROM    ubuntu
 
-# Install python3
-RUN     apt-get update
-RUN     apt-get install -y python3
+# Needed to avoid prompts blocking the build process
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Install Maven
-RUN     apt-get install -y maven
-
-# Install Git
-RUN     apt-get install -y git
+# Install Python, Maven and Git
+RUN apt-get update \
+    && apt-get install -y python3 maven git \
+    && rm -rf /var/lib/apt/lists/*
 
 # Clone the Epsilon Playground repo
 RUN git clone --depth=1 https://github.com/epsilonlabs/playground
