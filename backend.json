@@ -1,8 +1,8 @@
 {
   "service": [
-    {"name": "RunEpsilonFunction", "port": "8001"},
-    {"name": "FlexmiToGraphvizFunction", "port": "8002"},
-    {"name": "EmfaticToGraphvizFunction", "port": "8003"},
+    {"name": "RunEpsilonFunction", "url": "/services/RunEpsilonFunction"},
+    {"name": "FlexmiToGraphvizFunction", "url": "/services/FlexmiToGraphvizFunction"},
+    {"name": "EmfaticToGraphvizFunction", "url": "/services/EmfaticToGraphvizFunction"},
     {"name": "ShortURLFunction", "url": "https://europe-west2-epsilon-live-gcp.cloudfunctions.net/short-url"}
   ]
 }
