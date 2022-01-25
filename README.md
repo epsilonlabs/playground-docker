@@ -2,7 +2,7 @@
 
 ## Build
 
-Run this command:
+Clone the repository and run this command:
 
 ```shell
 docker image build -t playground:latest .
