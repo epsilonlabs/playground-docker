@@ -1,5 +1,7 @@
 # Dockerized Epsilon Playground
 
+This is a dockerized version of the [Epsilon Playground](https://eclipse.org/epsilon/live).
+
 ## Build
 
 Clone the repository and run this command:
