@@ -1,5 +1,5 @@
 {
-  "service": [
+  "services": [
     {"name": "RunEpsilonFunction", "url": "/services/RunEpsilonFunction"},
     {"name": "FlexmiToGraphvizFunction", "url": "/services/FlexmiToGraphvizFunction"},
     {"name": "EmfaticToGraphvizFunction", "url": "/services/EmfaticToGraphvizFunction"},
