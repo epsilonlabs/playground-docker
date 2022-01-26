@@ -28,4 +28,4 @@ The dockerized version of the playground comes with the same set of examples as 
 docker run -p 8000:80 -v <examples-folder-absolute-path>:/etc/nginx/html/examples playground:latest
 ```
 
-Your `examples` folder should contain an `examples.json` file with at least one example. A sample `examples` folder with a single example is provided in the repository and more examples are available in the `examples` folder of [Epsilon's website repo](https://git.eclipse.org/c/www.eclipse.org/epsilon.git/tree/live/examples).
+Your `examples` folder should contain an `examples.json` file with at least one example. A sample `examples` folder with a single example is provided [in this repository](examples) and more examples are available in the `examples` folder of [Epsilon's website repo](https://git.eclipse.org/c/www.eclipse.org/epsilon.git/tree/live/examples).
