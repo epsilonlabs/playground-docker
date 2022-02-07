@@ -2,23 +2,31 @@
 
 This is a dockerized version of the [Epsilon Playground](https://eclipse.org/epsilon/live).
 
-## Build the Docker Image
+## Fetch and Run the Docker Hub Image
 
-Clone the repository and run this command:
+Use this command to fetch the latest version of the Epsilon Playground image from Docker Hub and run it in a container:
+
+```shell
+docker run eclipseepsilon/playground
+```
+
+## Build and Run the Docker Image
+
+If you prefer to build the image from source instead of fetching it from Docker Hub, clone the repository and use this command to build the image:
 
 ```shell
 docker image build -t playground:latest .
 ```
 
-## Run the Docker Image Locally
-
-Run this command:
+and this command to run the image in a container:
 
 ```shell
 docker run -p 8000:80 playground:latest
 ```
 
-Go to http://localhost:8000 in your browser.
+## Access the Epsilon Playground
+
+Once the container is up, go to http://localhost:8000 in your browser to access the playground's web interface.
 
 ## Run the Docker Image with your Own Examples
 
