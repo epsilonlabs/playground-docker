@@ -36,4 +36,11 @@ The dockerized version of the playground comes with the same set of examples as 
 docker run -p 8000:80 -v <examples-folder-absolute-path>:/etc/nginx/html/examples playground:latest
 ```
 
+## Replace the Playground Frontend
+
+If you would like to use only the backend services and replace the frontend altogether, you can start an instance using the following command, replacing `<frontend-folder-absolute-path>` with the **absolute** path of your custom frontend folder. Your frontend folder should contain an `index.html` file. A minimal alternative frontend that you can use as a starting point for developing your custom frontend is available in the `miniground` folder of this repo.
+
+```shell
+docker run -p 8000:80 -v <frontend-folder-absolute-path>:/etc/nginx/html playground:latest
+```
 Your `examples` folder should contain an `examples.json` file with at least one example. A sample `examples` folder with a single example is provided [in this repository](examples) and more examples are available in the `examples` folder of [Epsilon's website repo](https://git.eclipse.org/c/www.eclipse.org/epsilon.git/tree/live/examples).

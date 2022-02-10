@@ -1,0 +1,78 @@
+<html>
+
+<head>
+	<style type="text/css">
+		textarea {
+			display: block;
+			height: 120px;
+			width: 300px;
+			margin-bottom: 20px;
+		}
+	</style>
+	<script type="text/javascript">
+	function run() {
+		var xhr = new XMLHttpRequest();
+	    var url = "services/RunEpsilonFunction";
+	    
+	    xhr.open("POST", url, true);
+	    xhr.setRequestHeader("Content-Type", "application/json");
+	    xhr.onreadystatechange = function () {
+	        if (xhr.readyState === 4) {
+	        	if (xhr.status === 200) {
+	                var json = JSON.parse(xhr.responseText);
+
+	                if (json.hasOwnProperty("error")) {
+	                    document.getElementById("console").value = json.error;
+	                }
+	                else {
+	                    document.getElementById("console").value = json.output;
+	            	}
+	        	}
+	        }
+	    }
+	    var data = JSON.stringify({
+	        "language": "eol",
+	        "program": document.getElementById("program").value, 
+	        "emfatic": document.getElementById("emfatic").value, 
+	        "flexmi": document.getElementById("flexmi").value,
+	        "secondFlexmi": "",
+	        "secondEmfatic": ""
+	    });
+	    xhr.send(data);
+	}
+	</script>
+</head>
+
+<body>
+
+<h3>Program</h3>
+<textarea id="program">
+Project.all.first().title.println();
+</textarea>
+
+<h3>Model</h3>
+<textarea id="flexmi">
+?nsuri: psl
+project: {
+    title: ACME
+}
+</textarea>
+
+<h3>Metamodel</h3>
+<textarea id="emfatic">
+@namespace(uri="psl", prefix="")
+package psl;
+
+class Project {
+	attr String title;
+}
+</textarea>
+
+<h3>Console</h3>
+<textarea id="console"></textarea>
+
+<button onclick="javascript:run()">Run</button>
+
+</body>
+
+</html>
