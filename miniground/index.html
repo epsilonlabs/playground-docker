@@ -15,47 +15,47 @@
 		// Set up a new asynchronous HTTP request
 		// to invoke the backend service
 		var xhr = new XMLHttpRequest();
-		
+
 		// The URL of the Epsilon program execution service
-	    var url = "services/RunEpsilonFunction";
-	    
-	    // Use the HTTP POST method to send the request
-	    // (i.e. program, model, metamodel) to the service
-	    xhr.open("POST", url, true);
+		var url = "services/RunEpsilonFunction";
 
-	    // We are sending a json request
-	    xhr.setRequestHeader("Content-Type", "application/json");
+		// Use the HTTP POST method to send the request
+		// (i.e. program, model, metamodel) to the service
+		xhr.open("POST", url, true);
 
-	    // Prepare the json data to send to the backend service
-	    var data = JSON.stringify({
-	        "language": "eol",
-	        "program": document.getElementById("program").value, 
-	        "emfatic": document.getElementById("emfatic").value, 
-	        "flexmi": document.getElementById("flexmi").value,
-	        "secondFlexmi": "", // This shouldn't be mandatory
-	        "secondEmfatic": "" // ... likewise
-	    });
+		// We are sending a json request
+		xhr.setRequestHeader("Content-Type", "application/json");
 
-	    // Set up the function that will be executed
-	    // once the service has responded
-	    xhr.onload = function () {
-	        
-	        // Parse the json string returned into a json object
-            var json = JSON.parse(xhr.responseText);
+		// Prepare the json data to send to the backend service
+		var data = JSON.stringify({
+			"language": "eol",
+			"program": document.getElementById("program").value, 
+			"emfatic": document.getElementById("emfatic").value, 
+			"flexmi": document.getElementById("flexmi").value,
+			"secondFlexmi": "", // This shouldn't be mandatory
+			"secondEmfatic": "" // ... likewise
+		});
 
-            // If there is an error, show it in the console
-            if (json.hasOwnProperty("error")) {
-                document.getElementById("console").value = json.error;
-            }
-            // else if the program executed successfully
-            // show its output in the console
-            else {
-                document.getElementById("console").value = json.output;
-        	}
-	    }
+		// Set up the function that will be executed
+		// once the service has responded
+		xhr.onload = function () {
 
-	    // Invoke the service
-	    xhr.send(data);
+			// Parse the json string returned into a json object
+			var json = JSON.parse(xhr.responseText);
+
+			// If there is an error, show it in the console
+			if (json.hasOwnProperty("error")) {
+				document.getElementById("console").value = json.error;
+			}
+			// else if the program executed successfully
+			// show its output in the console
+			else {
+				document.getElementById("console").value = json.output;
+			}
+		}
+
+		// Invoke the service
+		xhr.send(data);
 	}
 	</script>
 </head>
