@@ -1,0 +1,28 @@
+package flowchart;
+
+class Flowchart {
+   attr String name;
+   val Node[*] nodes;
+   val Transition[*] transitions;
+}
+
+abstract class Node {
+   attr String name;
+}
+
+@g.link(label="name", source="from", target="to")
+class Transition {
+   attr String name;
+   ref Node from;
+   ref Node to;
+}
+
+@g.node(label="name", color="azure")
+class Action extends Node {
+   
+}
+
+@g.node(label="name", color="wheat", shape="diamond")
+class Decision extends Node {
+   
+}
