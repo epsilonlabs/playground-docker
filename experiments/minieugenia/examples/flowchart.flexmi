@@ -1,0 +1,23 @@
+'?nsuri': flowchart
+
+flowchart:
+  title: Engineering Flowchart
+  
+  # Actions and decisions
+  decision: {name: 'Does it move?', ':var': d1}
+  decision: {name: 'Should it move?', ':var': d2}
+  decision: {name: 'Should it move?', ':var': d3}
+  
+  action: {name: WD40, ':var': wd40}
+  action: {name: Duct Tape, ':var': ductape}
+  action: {name: No problem, ':var': ok}
+
+  # Transitions between actions/decisions
+  transition: {name: yes, ':from': d1, ':to': d2}
+  transition: {name: no, ':from': d1, ':to': d3}
+
+  transition: {name: yes, ':from': d2, ':to': ok}
+  transition: {name: no, ':from': d2, ':to': ductape}
+
+  transition: {name: no, ':from': d3, ':to': ok}
+  transition: {name: yes, ':from': d3, ':to': wd40}

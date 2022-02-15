@@ -1,0 +1,19 @@
+{
+  "examples": [
+	{
+		"id": "psl",
+		"title": "Query Project Plan",
+		"language": "eol",
+		"program": "psl.eol",
+		"flexmi": "psl.flexmi",
+		"emfatic": "psl.emf"
+	},
+	{
+		"id": "flowchart",
+		"title": "Query Flowchart",
+		"language": "eol",
+		"program": "flowchart.eol",
+		"flexmi": "flowchart.flexmi",
+		"emfatic": "flowchart.emf"
+	}
+]}
