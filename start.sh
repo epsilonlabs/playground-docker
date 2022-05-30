@@ -13,8 +13,7 @@ mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.EmfaticToGr
 envsubst < /etc/nginx.conf.template > /etc/nginx/conf.d/default.conf
 nginx -g "daemon off;" &
 
-sleep 30s
-cat mvn*.log
+tail -f mvn*.log &
 
 # wait for them all
 wait -n
