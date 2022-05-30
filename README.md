@@ -24,6 +24,12 @@ and this command to run the image in a container:
 docker run -p 8000:80 playground:latest
 ```
 
+Should you need to customise the port that `nginx` runs on, you can do so through the `PORT` environment variable (as required by Google Cloud Build):
+
+```shell
+docker run --env PORT=8020 -p 8000:8020 playground:latest
+```
+
 ## Access the Epsilon Playground
 
 Once the container is up, go to http://localhost:8000 in your browser to access the playground's web interface.

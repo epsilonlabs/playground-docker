@@ -11,20 +11,21 @@ FROM nginx:latest AS webapp
 # Needed to avoid prompts blocking the build process
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Needed for Cloud Build
+ENV PORT=80
+
 # Install Python
 RUN apt-get update \
     && apt-get install -y python3-minimal \
     && apt-get install -y maven \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Nginx
-# RUN apt-get install maven
-
+# Copy playground sources
 COPY --from=git_clones /playground/ /playground/
 COPY --from=git_clones /epsilon/mkdocs/docs/live/ /etc/nginx/html/
 
 # Redirect /services/ URLs to the backend services running on ports 8001-8003
-ADD ./nginx.conf /etc/nginx/conf.d/default.conf
+ADD ./nginx.conf.template /etc/nginx.conf.template
 
 WORKDIR /playground
 
