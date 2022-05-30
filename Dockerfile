@@ -16,8 +16,7 @@ ENV PORT=80
 
 # Install Python
 RUN apt-get update \
-    && apt-get install -y python3-minimal \
-    && apt-get install -y maven \
+    && apt-get install -y python3-minimal maven tini \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy playground sources
@@ -42,4 +41,4 @@ RUN chmod +x /start.sh
 # Copy backend.json
 ADD backend.json /etc/nginx/html/
 
-ENTRYPOINT ["/start.sh"]
+ENTRYPOINT ["/usr/bin/tini", "--", "/start.sh"]
