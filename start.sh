@@ -26,18 +26,15 @@ wait_for_service() {
     done
 }
 
-wait_for_services() {
-    wait_for_service Epsilon 127.0.0.1 8001
-    wait_for_service Flexmi  127.0.0.1 8002
-    wait_for_service Emfatic 127.0.0.1 8003
-}
-
 # Functions for running Epsilon
 mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.RunEpsilonFunction -Drun.port=8001 &
-mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.FlexmiToGraphvizFunction -Drun.port=8002 &
-mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.EmfaticToGraphvizFunction -Drun.port=8003 &
+wait_for_service Epsilon 127.0.0.1 8001
 
-wait_for_services
+mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.FlexmiToGraphvizFunction -Drun.port=8002 &
+wait_for_service Flexmi  127.0.0.1 8002
+
+mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.EmfaticToGraphvizFunction -Drun.port=8003 &
+wait_for_service Emfatic 127.0.0.1 8003
 
 # nginx as frontend + reverse proxy
 envsubst < /etc/nginx.conf.template > /etc/nginx/conf.d/default.conf
