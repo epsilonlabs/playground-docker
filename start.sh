@@ -2,12 +2,14 @@
 
 set -e
 
-# Functions for running Epsilon
-mvn function:run -Drun.functionTarget=org.eclipse.epsilon.live.RunEpsilonFunction -Drun.port=8001 &
-mvn function:run -Drun.functionTarget=org.eclipse.epsilon.live.FlexmiToGraphvizFunction -Drun.port=8002 &
-mvn function:run -Drun.functionTarget=org.eclipse.epsilon.live.EmfaticToGraphvizFunction -Drun.port=8003 &
+export MAVEN_OPTS="-Xmx2g"
 
-mvn --help
+mvn compile
+
+# Functions for running Epsilon
+mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.RunEpsilonFunction -Drun.port=8001 &
+mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.FlexmiToGraphvizFunction -Drun.port=8002 &
+mvn -B -o function:run -Drun.functionTarget=org.eclipse.epsilon.live.EmfaticToGraphvizFunction -Drun.port=8003 &
 
 # nginx as frontend + reverse proxy
 envsubst < /etc/nginx.conf.template > /etc/nginx/conf.d/default.conf
