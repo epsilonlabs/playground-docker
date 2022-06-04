@@ -5,11 +5,11 @@ server {
    proxy_pass http://127.0.0.1:8001/;
  }
 
- location /services/FlexmiToGraphvizFunction {
+ location /services/FlexmiToPlantUMLFunction {
    proxy_pass http://127.0.0.1:8002/;
  }
  
- location /services/EmfaticToGraphvizFunction {
+ location /services/EmfaticToPlantUMLFunction {
    proxy_pass http://127.0.0.1:8003/;
  }
 }
