@@ -4,7 +4,7 @@ FROM bitnami/git AS git_clones
 RUN git clone --depth=1 https://github.com/epsilonlabs/playground
 
 # Clone the Epsilon website repo that contains the front-end
-RUN git clone --depth=1 https://git.eclipse.org/r/www.eclipse.org/epsilon.git
+RUN git clone --depth=1 https://github.com/eclipse/epsilon-website epsilon
 
 FROM nginx:latest AS webapp
 
