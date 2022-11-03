@@ -21,7 +21,7 @@ RUN apt-get update \
 
 # Copy playground sources
 COPY --from=git_clones /playground/ /playground/
-COPY --from=git_clones /epsilon/mkdocs/docs/live/ /etc/nginx/html/
+COPY --from=git_clones /epsilon/mkdocs/docs/playground/ /etc/nginx/html/
 
 # Redirect /services/ URLs to the backend services running on ports 8001-8003
 ADD ./nginx.conf.template /etc/nginx.conf.template
