@@ -1,13 +1,13 @@
 # Dockerized Epsilon Playground
 
-This is a dockerized version of the [Epsilon Playground](https://eclipse.org/epsilon/live).
+This is a dockerized version of the [Epsilon Playground](https://eclipse.org/epsilon/playground).
 
 ## Fetch and Run the Docker Hub Image
 
 Use this command to fetch the latest version of the Epsilon Playground image from Docker Hub and run it in a container:
 
 ```shell
-docker run -p 8000:80 eclipseepsilon/playground:latest
+docker run -p 8000:80 eclipseepsilon/playground:1.6
 ```
 
 ## Build and Run the Docker Image
