@@ -7,7 +7,7 @@ This is a dockerized version of the [Epsilon Playground](https://eclipse.org/eps
 Use this command to fetch the latest version of the Epsilon Playground image from Docker Hub and run it in a container:
 
 ```shell
-docker run -p 8000:80 eclipseepsilon/playground:1.6
+docker run -p 8000:80 eclipseepsilon/playground:2.0
 ```
 
 ## Build and Run the Docker Image
