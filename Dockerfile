@@ -16,7 +16,7 @@ ENV PORT=80
 
 # Install Python
 RUN apt-get update \
-    && apt-get install -y python3-minimal maven tini netcat \
+    && apt-get install -y python3-minimal maven tini netcat-traditional \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy playground sources
