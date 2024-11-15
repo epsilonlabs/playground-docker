@@ -28,11 +28,8 @@ ADD ./nginx.conf.template /etc/nginx.conf.template
 
 WORKDIR /playground
 
-# Due to https://issues.apache.org/jira/browse/MDEP-568, m-dependency-p
-# is not a practical solution for ensuring all dependencies are available.
-#
-# We use https://github.com/qaware/go-offline-maven-plugin instead.
-RUN mvn -B de.qaware.maven:go-offline-maven-plugin:1.2.8:resolve-dependencies
+# Build fat jar with all services and dependencies
+RUN mvn package
 
 # Copy start script and make it executable
 ADD start.sh /

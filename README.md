@@ -52,3 +52,18 @@ If you would like to use only the backend services and replace the front-end alt
 docker run -p 8000:80 -v <front-end-folder-absolute-path>:/etc/nginx/html playground:latest
 ```
 Your front-end folder should contain an `index.html` file. A minimal alternative front-end that you can use as a starting point for developing your custom front-end is available in the `miniground` folder of [this repository](miniground).
+
+## Publish to Docker Hub
+
+Run the following command to build a `linux/amd64` image
+
+```
+docker buildx build --platform linux/amd64 -t eclipseepsilon/playground:2.5.3 .
+```
+
+And then push it to Docker Hub
+
+```
+docker push eclipseepsilon/playground:2.5.3
+```
+
