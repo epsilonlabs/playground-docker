@@ -7,7 +7,7 @@ This is a dockerized version of the [Epsilon Playground](https://eclipse.org/eps
 Use this command to fetch the latest version of the Epsilon Playground image from Docker Hub and run it in a container:
 
 ```shell
-docker run -p 8000:80 eclipseepsilon/playground:2.0
+docker run -p 8000:80 eclipseepsilon/playground:latest
 ```
 
 ## Build and Run the Docker Image
@@ -36,13 +36,13 @@ Once the container is up, go to http://localhost:8000 in your browser to access 
 
 ## Run the Docker Image with your Own Examples
 
-The dockerized version of the playground comes with the same set of examples as the [online version](https://eclipse.org/epsilon/live). To start an instance with your own examples on the left hand side, use the following command, replacing `<examples-folder-absolute-path>` with the **absolute** path of your `examples` folder.
+The dockerized version of the playground comes with the same set of examples as the [online version](https://eclipse.org/epsilon/playground). To start an instance with your own examples on the left hand side, use the following command, replacing `<examples-folder-absolute-path>` with the **absolute** path of your `examples` folder.
 
 ```shell
 docker run -p 8000:80 -v <examples-folder-absolute-path>:/etc/nginx/html/examples playground:latest
 ```
 
-Your `examples` folder should contain an `examples.json` file with at least one example. A sample `examples` folder with a single example is provided [in this repository](examples) and more examples are available in the `examples` folder of [Epsilon's website repository](https://git.eclipse.org/c/www.eclipse.org/epsilon.git/tree/live/examples).
+Your `examples` folder should contain an `examples.json` file with at least one example. A sample `examples` folder with a single example is provided [in this repository](examples) and more examples are available in the `examples` folder of [Epsilon's website repository](https://github.com/eclipse-epsilon/epsilon-website/tree/main/mkdocs/docs/playground/examples).
 
 ## Replace the Playground Front-End
 
@@ -55,15 +55,17 @@ Your front-end folder should contain an `index.html` file. A minimal alternative
 
 ## Publish to Docker Hub
 
-Run the following command to build a `linux/amd64` image
+Run the following command to build a `linux/amd64` image (replace `x.y.z` with the actual version you wish to release)
 
 ```
-docker buildx build --platform linux/amd64 -t eclipseepsilon/playground:2.5.3 .
+docker buildx build --no-cache --platform linux/amd64 -t eclipseepsilon/playground:x.y.z .
+docker tag eclipseepsilon/playground:x.y.z eclipseepsilon/playground:latest
 ```
 
 And then push it to Docker Hub
 
 ```
-docker push eclipseepsilon/playground:2.5.3
+docker push eclipseepsilon/playground:x.y.z
+docker push eclipseepsilon/playground:latest
 ```
 
