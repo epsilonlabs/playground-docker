@@ -12,22 +12,47 @@ docker run -p 8000:80 eclipseepsilon/playground:latest
 
 ## Build and Run the Docker Image
 
-If you prefer to build the image from source instead of fetching it from Docker Hub, clone the repository and use this command to build the image:
+### Setting up token-based access to the playground-micronaut packages
 
-```shell
-docker image build -t playground:latest .
+If you prefer to build the image from source instead of fetching it, first ensure that your `$HOME/.m2/settings.xml` has a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) that can read public repositories associated to the `github-playground-micronaut` server.
+
+The `settings.xml` file could look like this:
+
+```xml
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <servers>
+    <server>
+      <id>github-playground-micronaut</id>
+      <username>YOUR_GITHUB_USERNAME</username>
+      <password>YOUR_GITHUB_TOKEN</password>
+    </server>
+  </servers>
+</settings>
 ```
 
-and this command to run the image in a container:
+### Building the image
+
+You can now clone the repository and use this command to build the image:
 
 ```shell
-docker run -p 8000:80 playground:latest
+./docker-build.sh
+```
+
+### Running the image
+
+Use this command to run the image in a container:
+
+```shell
+docker run -p 8000:80 playground:micronaut
 ```
 
 Should you need to customise the port that `nginx` runs on, you can do so through the `PORT` environment variable (as required by Google Cloud Build):
 
 ```shell
-docker run --env PORT=8020 -p 8000:8020 playground:latest
+docker run --env PORT=8020 -p 8000:8020 playground:micronaut
 ```
 
 ## Access the Epsilon Playground
@@ -52,6 +77,8 @@ If you would like to use only the backend services and replace the front-end alt
 docker run -p 8000:80 -v <front-end-folder-absolute-path>:/etc/nginx/html playground:latest
 ```
 Your front-end folder should contain an `index.html` file. A minimal alternative front-end that you can use as a starting point for developing your custom front-end is available in the `miniground` folder of [this repository](miniground).
+
+Alternatively, you may want to use the [Docker image for the Micronaut-based backend](https://github.com/epsilonlabs/playground-micronaut/pkgs/container/playground-micronaut) directly, without using this image.
 
 ## Publish to Docker Hub
 
