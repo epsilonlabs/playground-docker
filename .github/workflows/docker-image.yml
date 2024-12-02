@@ -28,4 +28,4 @@ jobs:
     - name: Download the backend JAR
       run: mvn -B dependency:copy-dependencies -DexcludeTransitive=true && ls target/dependency
     - name: Build the Docker image
-      run: docker build --tag playground-docker:$(date +%s) .
+      run: docker build --tag playground-docker:micronaut .
