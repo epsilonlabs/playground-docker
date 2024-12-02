@@ -7,6 +7,7 @@ FROM nginx:latest AS webapp
 
 LABEL maintainer "epsilon.devs@gmail.com"
 LABEL org.opencontainers.image.authors="epsilon.devs@gmail.com"
+LABEL org.opencontainers.image.licenses="EPL-2.0"
 
 # Needed to avoid prompts blocking the build process
 ENV DEBIAN_FRONTEND=noninteractive
