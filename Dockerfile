@@ -5,6 +5,9 @@ RUN git clone --depth=1 https://github.com/eclipse/epsilon-website epsilon
 
 FROM nginx:latest AS webapp
 
+LABEL maintainer "epsilon.devs@gmail.com"
+LABEL org.opencontainers.image.authors="epsilon.devs@gmail.com"
+
 # Needed to avoid prompts blocking the build process
 ENV DEBIAN_FRONTEND=noninteractive
 
