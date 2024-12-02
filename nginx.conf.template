@@ -2,14 +2,14 @@ server {
  listen ${PORT};
 
  location /services/RunEpsilonFunction {
-   proxy_pass http://127.0.0.1:8001/;
+   proxy_pass http://127.0.0.1:8080/epsilon;
  }
 
  location /services/FlexmiToPlantUMLFunction {
-   proxy_pass http://127.0.0.1:8002/;
+   proxy_pass http://127.0.0.1:8080/flexmi2plantuml;
  }
  
  location /services/EmfaticToPlantUMLFunction {
-   proxy_pass http://127.0.0.1:8003/;
+   proxy_pass http://127.0.0.1:8080/emfatic2plantuml;
  }
 }

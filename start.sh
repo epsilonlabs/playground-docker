@@ -27,14 +27,8 @@ wait_for_service() {
 }
 
 # Functions for running Epsilon
-java -cp target/org.eclipse.epsilon.playground.jar com.google.cloud.functions.invoker.runner.Invoker --target org.eclipse.epsilon.playground.RunEpsilonFunction --port 8001 &
-wait_for_service Epsilon 127.0.0.1 8001
-
-java -cp target/org.eclipse.epsilon.playground.jar com.google.cloud.functions.invoker.runner.Invoker --target org.eclipse.epsilon.playground.FlexmiToPlantUMLFunction --port 8002 &
-wait_for_service Flexmi  127.0.0.1 8002
-
-java -cp target/org.eclipse.epsilon.playground.jar com.google.cloud.functions.invoker.runner.Invoker --target org.eclipse.epsilon.playground.EmfaticToPlantUMLFunction --port 8003 &
-wait_for_service Emfatic 127.0.0.1 8003
+java -jar /opt/playground/backend.jar &
+wait_for_service Epsilon 127.0.0.1 8080
 
 # nginx as frontend + reverse proxy
 envsubst < /etc/nginx.conf.template > /etc/nginx/conf.d/default.conf

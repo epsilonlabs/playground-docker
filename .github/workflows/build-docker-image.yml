@@ -1,0 +1,31 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+    - uses: s4u/maven-settings-action@64e42c454dbd42ef6370ac8539685755aedd205b
+      with:
+        servers: |
+          [{
+            "id": "github-playground-micronaut",
+            "username": "epsilonlabs",
+            "password": "${{ secrets.GH_TOKEN_READ_MICRONAUT }}"
+          }]
+    - name: Download the backend JAR
+      run: mvn -B dependency:copy-dependencies -DexcludeTransitive=true
+    - name: Build the Docker image
+      run: docker build --tag playground-docker:micronaut .
