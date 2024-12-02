@@ -2,7 +2,7 @@ name: Push Docker Image
 
 on:
   push:
-    branches: [ "micronaut" ]
+    branches: [ "main", "micronaut" ]
 
 env:
   REGISTRY: ghcr.io
@@ -10,7 +10,7 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       contents: read
       packages: write
