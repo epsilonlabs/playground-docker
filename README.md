@@ -1,5 +1,9 @@
 # Dockerized Epsilon Playground
 
+**NOTE:** This repository is now deprecated, as it has been replaced by the standalone server in this project:
+
+https://github.com/epsilonlabs/playground-backend
+
 This is a dockerized version of the [Epsilon Playground](https://eclipse.org/epsilon/playground).
 
 ## Fetch and Run the Docker Hub Image
